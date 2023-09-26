@@ -1,0 +1,162 @@
+@import url('https://fonts.googleapis.com/css2?family=Teko:wght@300&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Teko', 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+p {
+  font-size: 1.7rem;
+}
+
+h1 {
+  font-size: 7rem;
+}
+
+.app {
+  width: 100%;
+  height: 100vh;
+  /* background-color: rgba(0,0,0,0.4); */
+  /* background: url(./images/background1.jpg) no-repeat center center/cover; */
+  color: white;
+}
+
+.app::before {
+  content: '';
+  background: url(./images/background1.jpg) no-repeat center center/cover;
+  background-size: cover;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.app input {
+  padding: .7rem 1.5rem;
+  font-size: 1.2rem;
+  border-radius: 25px 0px 0px 25px;
+  border: 2px solid white;
+  background: rgba(255,255,255,0.1);
+  color: white;
+  outline: none;
+}
+
+::placeholder {
+  color: white;
+}
+
+.container {
+  max-width: 700px;
+  padding: 0 1rem;
+  /* position: relative; */
+  top: 10%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 5%;
+  padding-bottom: 10%;
+}
+
+.searchbar {
+  display: flex;
+  justify-content: center;
+}
+
+/* .searchbar input {
+  margin-left: auto;
+  margin-right: auto;
+} */
+
+.searchbar button {
+  float: left;
+  border-radius: 0px 25px 25px 0px;
+  cursor:pointer;
+  width: 100px;
+  background: rgba(255,255,255,0.1);
+  color: white;
+  outline: none;
+}
+
+.above_image {
+  width: 100%;
+  display: inline-block;
+  margin-top: 10%;
+}
+
+.location p {
+  font-size: 2rem;
+}
+
+.above_image h1 {
+  top: 50%;
+}
+
+.description {
+  margin-top: -40px;
+}
+
+.max_min {
+  display: flex;
+  float: left;
+}
+
+.max_min p {
+  padding: 3px;
+}
+
+.sky {
+  float: right;
+}
+
+.max_min span {
+  padding-top: 10px;
+}
+
+.weather_icoin {
+  width: 250px;
+  display: flex;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 40px;
+}
+
+.weather_icoin img {
+  width: 200px;
+}
+
+.footer {
+  width: 80%;
+  margin-left: 10%;
+  display: flex;
+  justify-content: center;
+  /* position: absolute; */
+  left: 0;
+  border-radius: 1rem;
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.footer p {
+  padding: 0px 10px 0px 10px;
+  text-align: center;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+@media screen and (max-width: 600px) {
+  .container {
+    padding-top: 15%;
+    
+  }
+}
