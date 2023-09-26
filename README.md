@@ -6,13 +6,14 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 Including completed tasks:
 
-- Set up a React project and configure state management.
+- Set up a React project.
 
 - Integrate the OpenWeather API to retrieve weather data based on user input.
 
 - Build user interface (UI) components, including a search bar and weather display.
 
-- Enhance user experience with visual representations of weather conditions.
+- Enhance user experience with features like auto-complete and visual
+representations of weather conditions.
 
 - Ensure responsiveness and mobile-friendliness using CSS media queries or a responsive design framework.
 
@@ -27,12 +28,12 @@ Including completed tasks:
 ```bash
 const [data, setData] = useState({});
 ```
- // decalres data used to fetch data from the API and update the data state afterwards
+ // decalres data used to fetch data from the API and update the data state afterwards ^
 
 ```bash
 const [location, setLocation] = useState("");
 ```
-// declares location parameter extacted by the API and used in the return -> input section
+// declares location parameter extacted by the API and used in the return -> input section ^
 
 ```bash
 axios 
@@ -42,31 +43,48 @@ axios
         console.log(response.data);
       })
 ```
-// initialing Axios GET request
+// initialing Axios GET request ^
 
 ```bash
 <div className="temperature">
             {data.main ? <h1>{data.main.temp.toFixed()} °C</h1> : null}
 </div>
  ```
- // returning API data (weather.json) through ternary operator
+ // returning API data (weather.json) through ternary operator ^
+```bash
+const inputRef = useRef(null); // Create a ref to the input element
+
+  const initMap = () => {
+    // Initialize Google Places Autocomplete
+    const autocomplete = new window.google.maps.places.Autocomplete(
+      inputRef.current
+    );
+
+    // Listen for place selection
+    autocomplete.addListener("place_changed", () => {
+      const selectedPlace = autocomplete.getPlace();
+      if (
+        selectedPlace &&
+        selectedPlace.geometry &&
+        selectedPlace.geometry.location
+      ) {
+        setLocation(selectedPlace.formatted_address);
+      }
+    });
+  };
+
+  useEffect(() => {
+    // Check if the Google Maps API is already loaded
+    if (window.google && window.google.maps) {
+      initMap();
+    } else {
+      // The API hasn't loaded yet, you can handle this case or retry later
+    }
+  }, []);
+  ```
+ // Triggering Google (Places and Maps JS) API ^
 
 #######################################
-
-Instead of `onClick=` event you can trigger `{searchLocation}` with a key ('Enter'):
-
-```bash
-  const searchLocation = (event) => {
-    if (event.key === "Enter") {
-      axios.get(url).then((response) => {
-        setData(response.data);
-        console.log(response.data);
-      });
-      setLocation("");
-    }
-  };
-```
-`onKeyDown={searchLocation}` should also be declared if using this method
 
 ## node_modules 
 
@@ -76,7 +94,7 @@ All required dependencies are listed in the 'package.json' file. After cloning t
 
 - HTML
 - CSS
-- JavaScript
+- JavaScript/JSX
 
 ## Run Locally
 
@@ -97,10 +115,6 @@ Runs the app in the development mode.
 ```bash
 npm start
 ```
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.
-You may also see any lint errors in the console.
 
 Launches the test runner in the interactive watch mode.
 
@@ -119,17 +133,6 @@ The build is minified and the filenames include the hashes.
 Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-```bash
-npm run eject
-```
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
 ## Commit and push to origin
 
@@ -163,10 +166,4 @@ If you have any feedback, please reach out to me at daniel.stoychev@siteground.c
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
-
-## Acknowledgements
-
- - [SoftAcademy](https://softacademy.bg/kurs-web-programirane/)
- - [SiteGround](https://www.siteground.com/)
- - [Myslef](https://danielstoychev.com/)
 
